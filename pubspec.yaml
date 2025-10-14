@@ -1,0 +1,68 @@
+name: cure_cart_mobile
+description: A mobile app for managing pharmacy-related data.
+
+# The following line prevents the package from being accidentally published to pub.dev
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '^3.8.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0          # For API calls (optional, if using a backend)
+  shared_preferences: ^2.2.3
+  logger: ^2.4.0
+  mongo_dart: ^0.10.5     # For direct MongoDB connection
+  flutter_dotenv: ^6.0.0 # For environment variables
+  image_picker: ^1.2.0   # Added image_picker package
+  country_code_picker: ^3.0.0
+  path_provider: ^2.1.1
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  geolocator: ^10.1.0
+  google_maps_flutter: ^2.9.0   # 👈 moved here (main dependencies)
+  google_mlkit_text_recognition: ^0.15.0
+  url_launcher: ^6.3.0
+  flutter_local_notifications: ^17.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1   # ✅ added
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/curecart_logo.png
+    - assets/google_logo.png
+    - assets/apple_logo.png
+    - assets/icons/cough_icon.png
+    - assets/icons/pain_icon.png
+    - assets/icons/skincare_icon.png
+    - assets/icons/fever_icon.png
+    - assets/icons/lanka_pharmacy.png
+    - assets/icons/r_pharmacy.png
+    - assets/icons/product1.png
+    - assets/icons/product2.png
+    - assets/icons/product3.png
+    - assets/icons/product4.png
+    - assets/icons/pharma_mate_icon.png
+    - assets/icons/pharma_mateb_icon.png
+    - assets/icons/medScan.png
+    - assets/icons/helpdesk.png
+    - assets/icons/upload_pres.png
+    - assets/icons/prescription_image.png
+    - assets/icons/left.png
+    - assets/icons/middle.png
+    - assets/icons/right.png
+
+# ✅ Add this section at the END of the file
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png"
+  remove_alpha_ios: true

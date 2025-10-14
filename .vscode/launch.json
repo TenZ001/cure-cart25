@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "toolArgs": [
+        "--dart-define=RAPIDAPI_KEY=YOUR_REAL_KEY_HERE",
+        "--dart-define=RAPIDAPI_HOST=ai-doctor.p.rapidapi.com",
+        "--dart-define=RAPIDAPI_BASE=https://ai-doctor.p.rapidapi.com",
+        "--dart-define=RAPIDAPI_PATH=/prompt"
+      ]
+    }
+  ]
+}

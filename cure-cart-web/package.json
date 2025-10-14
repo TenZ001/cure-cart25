@@ -1,0 +1,26 @@
+{
+  "name": "cure-cart-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run dev --prefix client",
+    "server": "cross-env PORT=4000 CLIENT_ORIGIN=http://localhost:5173 MONGO_USER=CureCart MONGO_PASS=Pramod@1997 MONGO_HOST=curecart.ce760px.mongodb.net MONGODB_DB=curecart JWT_SECRET=devsecret npm run dev --prefix server",
+    "dev": "concurrently -n server,client -c blue,cyan \"npm:server\" \"npm:client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0"
+  },
+  "dependencies": {
+    "@cloudinary/react": "^1.14.3",
+    "@cloudinary/url-gen": "^1.22.0",
+    "cloudinary": "^2.7.0",
+    "multer": "^2.0.2"
+  }
+}

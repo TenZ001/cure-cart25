@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Minimal primary button */
+.btn-primary {
+  @apply bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/95 font-medium rounded-md px-4 py-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-primary;
+}
+
+/* Minimal card */
+.card {
+  @apply bg-white rounded-lg border border-slate-200 p-4 shadow-sm;
+}
+
+/* App background */
+body {
+  @apply bg-slate-50 text-slate-800;
+}
