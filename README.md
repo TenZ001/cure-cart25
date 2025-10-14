@@ -125,7 +125,7 @@ cure-cart-web/
 ## 🗄️ **Database Architecture**
 
 ### **MongoDB Atlas (Cloud Database)**
-- **Connection:** `mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/`
+- **Connection:** `[Check .env file for MongoDB connection string]`
 - **Database:** `curecart` (main), `curecartmobile` (mobile users)
 - **ODM:** Mongoose for both web and mobile backends
 
@@ -226,7 +226,7 @@ npm start        # Port 5000
 ### **Environment Variables**
 ```env
 # Database
-MONGO_URI=mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/
+MONGO_URI=[Your MongoDB Connection String]
 MONGODB_DB=curecart
 
 # JWT

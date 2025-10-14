@@ -29,7 +29,7 @@ app.use("/api/delivery", deliveryRoutes);
 app.use("/api/pharmacies", pharmacyRoutes);
 
 // Connect MongoDB - Use same database as web server
-const mongoUri = process.env.MONGO_URI || "mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/?retryWrites=true&w=majority";
+const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/curecart";
 const dbName = process.env.MONGODB_DB || "curecart";
 
 mongoose
