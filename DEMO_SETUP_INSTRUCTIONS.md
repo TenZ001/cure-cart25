@@ -43,7 +43,7 @@ ls -la
    mongodb+srv://<username>:<password>@<cluster-url>/<database-name>
    
    # Example:
-   mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/
+   [YOUR_MONGODB_CONNECTION_STRING]
    ```
 
 3. **Create Database Collections**

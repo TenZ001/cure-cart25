@@ -52,7 +52,7 @@ npm install
 # - backend/config/database.js
 # - cure-cart-web/server/config/database.js
 
-# Default connection: mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/
+# Default connection: [YOUR_MONGODB_CONNECTION_STRING]
 ```
 
 ### **3. Start All Services**
