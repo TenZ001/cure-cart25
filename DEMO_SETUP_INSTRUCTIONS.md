@@ -61,10 +61,10 @@ ls -la
 #### **2.2 Update Database Configuration**
 ```bash
 # Update backend/config/database.js
-const MONGODB_URI = "mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/";
+const MONGODB_URI = "[YOUR_MONGODB_CONNECTION_STRING]";
 
 # Update cure-cart-web/server/config/database.js  
-const MONGODB_URI = "mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/";
+const MONGODB_URI = "[YOUR_MONGODB_CONNECTION_STRING]";
 ```
 
 ### **Step 3: Mobile Backend Setup**
@@ -82,7 +82,7 @@ touch .env
 
 # Add the following content:
 JWT_SECRET=your_jwt_secret_key_here
-MONGODB_URI=mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/
+MONGODB_URI=[YOUR_MONGODB_CONNECTION_STRING]
 PORT=5000
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
@@ -115,7 +115,7 @@ touch .env
 
 # Add the following content:
 JWT_SECRET=your_jwt_secret_key_here
-MONGODB_URI=mongodb+srv://CureCart:Pramod@1997@curecart.ce760px.mongodb.net/
+MONGODB_URI=[YOUR_MONGODB_CONNECTION_STRING]
 PORT=4000
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
