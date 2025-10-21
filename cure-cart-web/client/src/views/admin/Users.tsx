@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useAuth } from '../../stores/auth'
 
 export default function AdminUsers() {
   const [items, setItems] = useState<any[]>([])
@@ -19,10 +20,20 @@ export default function AdminUsers() {
     setItems(prev => prev.map(u => u._id === id ? data : u))
   }
   const filtered = items.filter(u => `${u.name} ${u.email} ${u.role}`.toLowerCase().includes(q.toLowerCase()))
+  const { user } = useAuth()
+
   return (
     <div className="bg-white border border-slate-200 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
-        <div className="text-slate-900 font-semibold">Users</div>
+        <div className="flex items-center gap-3">
+          <div className="text-slate-900 font-semibold">Users</div>
+          {/* Show Add User button only for admin@gmail.com */}
+          {user?.email === 'admin@gmail.com' && (
+            <button className="text-sm bg-brand px-3 py-1 rounded text-white" onClick={()=>{ /* Add user flow (left unchanged) */ }}>
+              Add user
+            </button>
+          )}
+        </div>
         <input className="border rounded px-2 py-1 text-sm" placeholder="Search users..." value={q} onChange={(e)=>setQ(e.target.value)} />
       </div>
       <table className="w-full text-sm">
