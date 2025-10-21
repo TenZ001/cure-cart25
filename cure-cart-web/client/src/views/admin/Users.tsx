@@ -21,6 +21,10 @@ export default function AdminUsers() {
   }
   const filtered = items.filter(u => `${u.name} ${u.email} ${u.role}`.toLowerCase().includes(q.toLowerCase()))
   const { user } = useAuth()
+  
+  // Debug logging
+  console.log('Current user:', user)
+  console.log('Is admin@gmail.com?:', user?.email === 'admin@gmail.com')
 
   return (
     <div className="bg-white border border-slate-200 rounded-lg p-4">
@@ -29,7 +33,7 @@ export default function AdminUsers() {
           <div className="text-slate-900 font-semibold">Users</div>
           {/* Show Add User button only for admin@gmail.com */}
           {user?.email === 'admin@gmail.com' && (
-            <button className="text-sm bg-brand px-3 py-1 rounded text-white" onClick={()=>{ /* Add user flow (left unchanged) */ }}>
+            <button className="text-sm bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white" onClick={()=>{ /* Add user flow (left unchanged) */ }}>
               Add user
             </button>
           )}
