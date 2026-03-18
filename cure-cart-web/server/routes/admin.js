@@ -18,6 +18,54 @@ router.get('/users', async (_req, res) => {
   const users = await User.find().select('_id name email role createdAt phone status kyc lastLoginAt');
   res.json(users);
 });
+
+// Create user
+router.post('/users', async (req, res) => {
+  try {
+    const { name, email, password, role, status } = req.body;
+    
+    // Validate required fields
+    if (!name || !email || !password || !role) {
+      return res.status(400).json({ message: 'Name, email, password, and role are required' });
+    }
+    
+    // Validate password length
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+    }
+
+    // Check if email already exists
+    const existingUser = await User.findOne({ email: email.toLowerCase() });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
+
+    // Create user with hashed password
+    const bcrypt = require('bcryptjs');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    const user = await User.create({
+      name,
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      role: role || 'customer',
+      status: status || 'active'
+    });
+
+    // Return user data without password
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      status: user.status,
+      createdAt: user.createdAt
+    });
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 router.patch('/users/:id/role', async (req, res) => {
   const { role } = req.body || {};
   if (!['admin','pharmacist','customer','doctor'].includes(role)) return res.status(400).json({ error: 'Invalid role' });
@@ -38,6 +86,46 @@ router.patch('/users/:id/kyc', async (req, res) => {
   if (verified) update['kyc.verifiedAt'] = new Date();
   const user = await User.findByIdAndUpdate(req.params.id, update, { new: true }).select('_id name email role kyc');
   res.json(user);
+});
+
+// Delete user
+router.delete('/users/:id', async (req, res) => {
+  try {
+    // Check if trying to delete own account
+    if (req.user?.uid === req.params.id) {
+      return res.status(400).json({ message: 'Cannot delete your own account' });
+    }
+
+    // Find user first to check if it exists
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Only admin@gmail.com can delete other admin users
+    if (user.role === 'admin') {
+      // Get the requesting admin user
+      const adminUser = await User.findById(req.user?.uid);
+      
+      // Check if the requesting user is the main admin (admin@gmail.com)
+      if (adminUser?.email !== 'admin@gmail.com') {
+        return res.status(403).json({ message: 'Only the main admin can delete other admin users' });
+      }
+
+      // Prevent deletion of the main admin account
+      if (user.email === 'admin@gmail.com') {
+        return res.status(403).json({ message: 'Cannot delete the main admin account' });
+      }
+    }
+
+    // Delete the user
+    await User.findByIdAndDelete(req.params.id);
+    
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // Pharmacies approval

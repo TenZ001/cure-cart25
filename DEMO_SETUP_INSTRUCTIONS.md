@@ -495,3 +495,4 @@ curl http://localhost:4000/api/health
 ---
 
 **🎯 Your CureCart demo environment is now ready for an impressive presentation!**
+
